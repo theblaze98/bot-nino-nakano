@@ -1,4 +1,5 @@
 const { EmbedBuilder } = require('discord.js');
+const { fetch } = require('undici');
 module.exports = {
 	name: 'pat',
 	alias: [],
@@ -9,14 +10,29 @@ module.exports = {
 
 		if (user) {
 			if (user != message.author) {
+				let gif = await fetch('https://api.waifu.pics/sfw/pat')
+					.then(r => r.json())
+					.then(data => data.url);
+
 				const embed = new EmbedBuilder()
 					.setColor(color)
 					.setDescription(
 						`${message.author.username} acaricio a ${user.username}`
-					);
-				await message.reply({ embeds: [embed] });
+					)
+					.setImage(gif);
+				await message.reply({embeds: [embed]});
 			} else {
-				message.channel.send(`❌ - No puedes mencionarte a ti mismo`);
+				let gif = await fetch('https://api.waifu.pics/sfw/pat')
+					.then(r => r.json())
+					.then(data => (gif = data.url));
+
+				const embed = new EmbedBuilder()
+					.setColor(color)
+					.setDescription(
+						`${message.author.username} acaricio a un ser imaginario`
+					)
+					.setImage(gif);
+				await message.reply({embeds: [embed]});
 			}
 		} else {
 			message.channel.send(`❌ - Debes mencionar a alguien`);
