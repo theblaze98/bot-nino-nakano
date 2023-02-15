@@ -1,6 +1,4 @@
 const { EmbedBuilder } = require( 'discord.js' );
-const NekosApi = require( 'nekos.life' );
-const neko = new NekosApi();
 const config = require( '../../config.json' );
 module.exports = {
     name: 'kiss',
@@ -21,8 +19,7 @@ module.exports = {
                         .setColor( color )
                         .setDescription(
                             `${message.author.username} me gusta como me besas`
-                        )
-                        .setImage( ( await neko.kiss() ).url );
+                        );
                     await message.reply( { embeds: [ embed ] } );
 
                 } else if ( user.id === client.user.id )
@@ -34,8 +31,7 @@ module.exports = {
                         .setColor( color )
                         .setDescription(
                             `${message.author.username} le dio un beso a ${user.username}`
-                        )
-                        .setImage( ( await neko.kiss() ).url );
+                        );
                     await message.reply( { embeds: [ embed ] } );
                 }
             } else

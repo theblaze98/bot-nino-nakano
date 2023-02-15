@@ -1,6 +1,4 @@
 const { EmbedBuilder } = require( 'discord.js' );
-const NekosApi = require( 'nekos.life' );
-const neko = new NekosApi();
 module.exports = {
 	name: 'hug',
 	alias: [],
@@ -14,12 +12,14 @@ module.exports = {
 		{
 			if ( user != message.author )
 			{
+				let gif = await fetch('https://api.waifu.pics/sfw/hug').then(r => r.url);
+
+
 				const embed = new EmbedBuilder()
 					.setColor( color )
 					.setDescription(
 						`${message.author.username} le dio un abrazo a ${user.username}`
-					)
-					.setImage( ( await neko.hug() ).url );
+					);
 				await message.reply( { embeds: [ embed ] } );
 			} else
 			{

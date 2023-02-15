@@ -1,6 +1,4 @@
 const { EmbedBuilder } = require('discord.js');
-const NekosApi = require('nekos.life');
-const neko = new NekosApi();
 module.exports = {
 	name: 'smug',
 	alias: [],
@@ -9,8 +7,7 @@ module.exports = {
 	async run(client, message, args, color) {
 		const embed = new EmbedBuilder()
 			.setColor(color)
-			.setDescription(`${message.author.username} esta presumiendo`)
-			.setImage((await neko.smug()).url);
+			.setDescription(`${message.author.username} esta presumiendo`);
 
 		message.reply({ embeds: [embed] });
 	},

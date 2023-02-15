@@ -1,6 +1,4 @@
 const { EmbedBuilder } = require('discord.js');
-const NekosApi = require('nekos.life');
-const neko = new NekosApi();
 module.exports = {
 	name: 'pat',
 	alias: [],
@@ -15,8 +13,7 @@ module.exports = {
 					.setColor(color)
 					.setDescription(
 						`${message.author.username} acaricio a ${user.username}`
-					)
-					.setImage((await neko.pat()).url);
+					);
 				await message.reply({ embeds: [embed] });
 			} else {
 				message.channel.send(`❌ - No puedes mencionarte a ti mismo`);
