@@ -24,7 +24,7 @@ module.exports = {
 			} else {
 				let gif = await fetch('https://api.waifu.pics/sfw/hug')
 					.then(r => r.json())
-					.then(data => (gif = data.url));
+					.then(data => data.url);
 
 				const embed = new EmbedBuilder()
 					.setColor(color)

@@ -13,7 +13,7 @@ module.exports = {
 			if (user != message.author) {
 				if (
 					user.id === client.user.id &&
-					message.author.id === config.authorID
+					message.author.id === process.env.AUTHOR_ID
 				) {
 					let gif = await fetch('https://api.waifu.pics/sfw/kiss')
 						.then(r => r.json())

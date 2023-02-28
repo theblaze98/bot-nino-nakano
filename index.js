@@ -1,3 +1,4 @@
+require('dotenv').config();
 const {
 	Client,
 	GatewayIntentBits,
@@ -73,7 +74,7 @@ client.on( 'interactionCreate', ( int ) =>
 	cmd.execute( client, int, color() );
 } );
 
-client.login( config.token );
+client.login( process.env.TOKEN_BOT );
 
 /* ------------------------ */
 /* Prefix Command Handler */
