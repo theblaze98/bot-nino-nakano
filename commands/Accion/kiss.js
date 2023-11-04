@@ -1,6 +1,13 @@
-const {EmbedBuilder} = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const config = require('../../config.json');
 const { fetch } = require('undici');
+
+const gif = [
+	'https://tenor.com/view/huh-the-quintessential-quintuplets-5toubun-no-hanayome-nakano-miku-nakano-nino-gif-21739675',
+	'https://tenor.com/view/nino-nakano-miku-nakano-the-quintessential-quintuplets-gotoubun-no-hanayome-gif-20901838',
+	'https://tenor.com/view/nino-nakano-nino-nakano-hopeless-hopeless-pervert-gif-23264653',
+];
+
 module.exports = {
 	name: 'kiss',
 	alias: [],
@@ -20,15 +27,15 @@ module.exports = {
 						.then(data => data.url);
 					const embed = new EmbedBuilder()
 						.setColor(color)
-						.setDescription(
-							`${message.author.username} me gusta como me besas`
-						)
+						.setDescription(`Mi amor me gusta como me besas `)
 						.setImage(gif);
-					await message.reply({embeds: [embed]});
+					await message.reply({ embeds: [embed] });
 				} else if (user.id === client.user.id) {
-					message.channel.send(
-						`❌ - Lo siento pero debes mencionar a alguien mas`
-					);
+					const embed = new EmbedBuilder()
+						.setColor(color)
+						.setDescription('Alejate pervertido')
+						.setImage(gif[Math.floor(Math.random() * 3)]);
+					await message.reply({ embeds: [embed] });
 				} else {
 					let gif = await fetch('https://api.waifu.pics/sfw/kiss')
 						.then(r => r.json())
@@ -39,7 +46,7 @@ module.exports = {
 							`${message.author.username} le dio un beso a ${user.username}`
 						)
 						.setImage(gif);
-					await message.reply({embeds: [embed]});
+					await message.reply({ embeds: [embed] });
 				}
 			} else {
 				message.channel.send(`❌ - Te besaras a ti mismo?`);
